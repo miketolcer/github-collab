@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Collaborating with GitHub | Devmountain Foundations</title>
+
+      <link
+        href="_static/pygments.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link href="_static/devmountain.css" rel="stylesheet" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+          <link rel="stylesheet" type="text/css" href="_static/devmountain.css" />
+          <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+          <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+
+      <script src="_static/pdfobject.min.js"></script>
+      
+  </head>
+  <body>
+      <div id="handouts-container">
+        <header id="page-header">
+            <p id="project-title">Devmountain Foundations</p>
+            <p id="page-title">Collaborating with GitHub</p>
+              <p id="backlink">
+                <a href="/"> &laquo; Back to Homepage </a>
+              </p>
+        </header>
+
+        <nav id="page-toc"><ul>
+<li><a class="reference internal" href="#">Collaborating with GitHub</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#overview-of-collaborating">Overview of Collaborating</a><ul>
+<li><a class="reference internal" href="#some-important-terms">Some Important Terms</a></li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#practice">Practice</a><ul>
+<li><a class="reference internal" href="#id1">Summary</a></li>
+<li><a class="reference internal" href="#editing-the-same-file">Editing the Same File</a></li>
+<li><a class="reference internal" href="#adding-another-file">Adding Another File</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conflicts">Conflicts</a><ul>
+<li><a class="reference internal" href="#resolving-conflicts-remotely">Resolving Conflicts Remotely</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+
+        <main id="page-content">
+            <section class="section" id="collaborating-with-github">
+<h1>Collaborating with GitHub</h1>
+<section class="section" id="introduction">
+<h2>Introduction</h2>
+<p>In this lab, you’ll be working with git and GitHub to collaborate on repos with a partner. One of the most powerful things about git/GitHub is the ability to work together like this. It takes some getting used to, but this lab will provide for multiple practices and can be repeated as many times as you need.</p>
+<p>For this lab, you will <strong>need to work with a partner</strong>. The instructions are written for 2 people. If you have 3, things will be more complicated. You can have 1 <cite>author</cite> and 2 <cite>contributors</cite> or switch pairs throughout. Contributors should not do their steps at the same time. One contributor should work through them and then the other. In order for that to work, some author steps will need to be repeated as well, these steps are starred.</p>
+<p>If you are having trouble finding a partner, reach out to a staff member.</p>
+<p>Start by reading the “Overview of Collaborating” section for a refresher on the concepts. You’ll get into the hands-on portion in the “Practice” and “Conflicts” sections.</p>
+<div class="admonition note">
+<p class="admonition-title">Which branch am I on?</p>
+<div class="admonition-body docutils container">
+<p>In VS Code, you can see which branch you are on in the bottom left corner. You can also run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> in your terminal to see a list of branches. The one you are currently working on will be starred and/or highlighted.</p>
+</div>
+</div>
+</section>
+<section class="section" id="overview-of-collaborating">
+<h2>Overview of Collaborating</h2>
+<section class="section" id="some-important-terms">
+<h3>Some Important Terms</h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>word</p></th>
+<th class="head"><p>definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>repo</p></td>
+<td><p>short for “repository”, which are the
+containers that git holds projects in</p></td>
+</tr>
+<tr class="row-odd"><td><p>remote</p></td>
+<td><p>all the code stored on GitHub is remote,
+away from your local machine, out in
+some GitHub database</p></td>
+</tr>
+<tr class="row-even"><td><p>local</p></td>
+<td><p>the things you have on your computer,
+these files and folders aren’t available
+to your team unless you <code class="docutils literal notranslate"><span class="pre">push</span></code> them</p></td>
+</tr>
+<tr class="row-odd"><td><p>main</p></td>
+<td><p>the default base branch of your
+git repos (used to be called master)</p></td>
+</tr>
+<tr class="row-even"><td><p>branch</p></td>
+<td><p>versions of your repository that are
+split off, like a copy, which you can
+edit without affecting “official” code</p></td>
+</tr>
+<tr class="row-odd"><td><p>push</p></td>
+<td><p>uploading local code to a remote repo</p></td>
+</tr>
+<tr class="row-even"><td><p>pull</p></td>
+<td><p>downloading remote code to your local
+machine</p></td>
+</tr>
+<tr class="row-odd"><td><p>pull request (PR)</p></td>
+<td><p>a request made on GitHub to merge changes
+from one branch to another</p></td>
+</tr>
+<tr class="row-even"><td><p>checkout</p></td>
+<td><p>the git command to switch to another
+branch (with the <code class="docutils literal notranslate"><span class="pre">-b</span></code> flag, it can also
+create new branches)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="section" id="summary">
+<h3>Summary</h3>
+<p>In a perfect world, everyone working on a repo would all be on the same page about what edits were happening where. In that case, the process would go something like this:</p>
+<ul class="simple">
+<li><p>A project is held in a remote repository on GitHub, where everyone on the team has access to it</p></li>
+<li><p>Everyone on the team has a local version of the project on their machine</p></li>
+<li><p>When changes need to be made, everyone is aware of where those changes are, so people can avoid editing the same files on their local machines at the same time</p></li>
+<li><p>A person making changes creates a local branch on their machine and makes the edits</p></li>
+<li><p>That person pushes their local branch to the remote repo</p></li>
+<li><p>On GitHub, that branch can be compared to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch and merged in if there are no conflicts (if there are conflicts, they can be resolved on GitHub)</p></li>
+<li><p>Once the branch is merged in, everyone on the team should <code class="docutils literal notranslate"><span class="pre">pull</span></code> the main branch down to their local machine</p></li>
+<li><p>If the changes affect anyone’s local branch, they can merge <code class="docutils literal notranslate"><span class="pre">main</span></code> into their local branch, otherwise next time they make a local branch, it will be based off <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+</ul>
+<p>When you have multiple people editing a repo, conflicts can arise. This often happens when 2, or more, people edit the same file without pulling each other’s changes. Usually one version will have been merged into <code class="docutils literal notranslate"><span class="pre">main</span></code> and when the next one attempts, there will be missing or mismatched code. There are other ways that conflicts can come about, but if you’re pulling changes regularly and communicating effectively, you shouldn’t run into them too often.</p>
+<div class="admonition note">
+<p class="admonition-title">Forking</p>
+<div class="admonition-body docutils container">
+<p>Today, we’ll be working directly in the same repos. This is often the practice for private repos. When contributing to an opensource project, or any other repo that you don’t have direct access to/authorship of, you should <code class="docutils literal notranslate"><span class="pre">fork</span></code> the repo to your GitHub account first. You can still branch and push to your repo, and then open a PR on the original repo. You can also pull the original repo’s code to your forked version.</p>
+</div>
+</div>
+</section>
+</section>
+<section class="section" id="practice">
+<h2>Practice</h2>
+<section class="section" id="id1">
+<h3>Summary</h3>
+<p>In these scenarios, one partner should be <cite>author</cite> and one should be <cite>contributor</cite>. Keep your role throughout the exercise. Once you have completed the exercise, switch roles and repeat the steps. By the end, each partner should have had a chance to be <cite>author</cite> <strong>AND</strong> <cite>contributor</cite> for the entire exercise. Make sure you use different folder names when you repeat the steps so you don’t confuse them.</p>
+<p>This exercise involves a lot of communication. Make sure you are doing every step together; timing will affect the outcomes. Share your screens back and forth as you move between steps so that everyone is on the same page.</p>
+</section>
+<section class="section" id="editing-the-same-file">
+<h3>Editing the Same File</h3>
+<ol class="arabic">
+<li><p>Figure out who will be <cite>author</cite> and who will be <cite>contributor</cite></p></li>
+<li><p><cite>author</cite>: in your terminal, navigate to where you’d like to save this project</p></li>
+<li><p><cite>a</cite>: use <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> to make a folder called “git-branch-practice” or similar, <code class="docutils literal notranslate"><span class="pre">cd</span></code> into that folder, and use <code class="docutils literal notranslate"><span class="pre">touch</span></code> to create an HTML file</p></li>
+<li><p><cite>a</cite>: add an <code class="docutils literal notranslate"><span class="pre">h1</span></code> tag containing your name to the file</p></li>
+<li><p><cite>a</cite>: create a new repository on GitHub also called “git-branch-practice”</p></li>
+<li><p><cite>a</cite>: in your terminal (make sure you’re in the “git-branch-practice” directory), run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> and then <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">commit</span></code> your code</p></li>
+<li><p><cite>a</cite>: <code class="docutils literal notranslate"><span class="pre">push</span></code> your code to the new GitHub repo (you can copy the commands from GitHub)</p></li>
+<li><p><cite>a</cite>: on GitHub, head to the Settings tab on your repo, click “Manage access” in the left menu, and then the green “Add people” button, add your partner(s) to your repository with “Read” permissions</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You should now see your code on GitHub and have a URL to share with your partner, do so now. (Your partner will have also gotten an email invite from GitHub.)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><cite>contributor</cite>: in your terminal, navigate to where you’d like to save this project</p></li>
+<li><p><cite>c</cite>: use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;URL&gt;</span></code> to copy the contents (where &lt;URL&gt; is the repo’s URL without the brackets)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>At this point, you both have the same code on your local machines, and it’s the same code that is in the remote repo</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><cite>c</cite>: in your terminal (in the “git-branch-practice” folder) run the following command to make a new branch called “feature/adding-h2”: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">feature/adding-h2</span></code></p></li>
+<li><p><cite>c</cite>: add an <code class="docutils literal notranslate"><span class="pre">h2</span></code> tag containing your name to the HTML file</p></li>
+<li><p><cite>c</cite>: <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">commit</span></code> your changes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Now there is a local branch and changes to the HTML file that are only on the contributor’s machine. The next steps will help you push that code to the remote repo and merge it in to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><cite>c</cite>: use the following command to set up a remote branch, assign it as the place where your local branch should push to, and push your code to it: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">feature/adding-h2</span></code></p></li>
+<li><p><cite>both</cite>: check the GitHub repo, you should both be able to see that a new branch has been added, explore the different views in GitHub to see what it can show you about the changes</p></li>
+<li><p><cite>contributor</cite>: click the “branches” link on the repo’s GitHub page (left side of the same nav bar that the green “Code” button is in), and you should see a list of the branches, just <code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">feature/adding-h2</span></code></p></li>
+<li><p><cite>c</cite>: on the right hand side of the page, there should be a gray “New pull request” button on the same row with your branch’s name, click on that button</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The screen you’re seeing now allows you to name the PR and make any comments on it, this is great for tracking information about projects.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><cite>c</cite>: create the pull request by clicking the green button</p></li>
+<li><p><cite>author*</cite>: head to the “Pull request” tab of the repo and click into the PR your partner just made, there should be no conflicts</p></li>
+<li><p><cite>a*</cite>: click the green “Merge pull request” button and then the “Confirm merge” button to merge the code into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The changes are now on the <strong>remote</strong> <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, but they are not on anyone’s <strong>local</strong> <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. (They are on the <cite>contributor’s</cite> <strong>local</strong> <code class="docutils literal notranslate"><span class="pre">feature/adding-h2</span></code> branch.)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><cite>both</cite>: in your terminal (make sure that you are in the right directory and that you are on the main branch, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code> to switch back to it), run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, note the message and figure out what it means</p></li>
+<li><p><cite>both</cite>: run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">main</span></code> in your terminal</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The remote changes are now on your <strong>local</strong> <code class="docutils literal notranslate"><span class="pre">main</span></code> branch!</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>If you have time at the end of this lab, you can repeat this process with as many changes as you would like. Try adding some more files and editing each other’s and your own code.</p>
+</section>
+<section class="section" id="adding-another-file">
+<h3>Adding Another File</h3>
+<p>Once a repository is established, it’s a much quicker process to push and pull changes.</p>
+<ol class="arabic">
+<li><p><cite>author</cite>: in your terminal (in the “git-branch-practice” folder, on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch), run the following command to make a new branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">feature/adding-css</span></code></p></li>
+<li><p><cite>a</cite>: on your new branch, create a <code class="docutils literal notranslate"><span class="pre">styles.css</span></code> file and add a few styles (change a font/color/size/margin or 2)</p></li>
+<li><p><cite>a</cite>: <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">commit</span></code> your code, then run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">feature/adding-css</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Your CSS is now on a new remote branch in your repo!</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><cite>a</cite>: on GitHub, create a PR from your new branch and merge it into <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p><cite>both</cite>: in your terminal (in the “git-branch-practice” folder, on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch), run this command to get the CSS file: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">main</span></code></p></li>
+</ol>
+</section>
+</section>
+<section class="section" id="conflicts">
+<h2>Conflicts</h2>
+<div class="admonition note">
+<p class="admonition-title">Conflicts Ahead…</p>
+<div class="admonition-body docutils container">
+<p><strong>This section is purposefully a “how NOT to” section, so that you can practice resolving conflicts and recognize how they come about.</strong></p>
+</div>
+</div>
+<section class="section" id="resolving-conflicts-remotely">
+<h3>Resolving Conflicts Remotely</h3>
+<ol class="arabic">
+<li><p><cite>contributor</cite>: in your terminal, run the following command to create a local branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">feature/adding-css</span></code></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Local vs Remote Branch Names</p>
+<div class="admonition-body docutils container">
+<p>The name of your local branch does not have to match the name of the remote branch, but it makes things a lot easier to keep track of.</p>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p><cite>c</cite>: set the upstream origin (the place where your branch will push to) using this command: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">feature/adding-css</span></code></p></li>
+<li><p><cite>c</cite>: make some changes to the CSS file</p></li>
+<li><p><cite>c</cite>: <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">commit</span></code>, and <code class="docutils literal notranslate"><span class="pre">push</span></code> your changes</p></li>
+<li><p><cite>c</cite>: head to the repo and create a PR</p></li>
+<li><p><cite>author</cite>: approve and merge the PR</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Mistake Marker</p>
+<div class="admonition-body docutils container">
+<p>In a normal workflow, this is where you would pull the merged in changes to your local repo. But since we want to manufacture a conflict, we are not going to do that.</p>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p><cite>a</cite>: from <code class="docutils literal notranslate"><span class="pre">main</span></code> create another branch using this command: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">conflict-branch</span></code></p></li>
+<li><p><cite>a</cite>: make changes - <strong>different from your partner’s</strong> - to the CSS</p></li>
+<li><p><cite>a</cite>: <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">commit</span></code>, and <code class="docutils literal notranslate"><span class="pre">push</span></code> (using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">conflict-branch</span></code>) your code</p></li>
+<li><p><cite>a</cite>: on GitHub, create a PR, you should get a warning that it will not merge automatically but that you can still create the PR</p></li>
+<li><p><cite>a</cite>: on the middle of the following page, you should see a “Resolve conflicts” button, click it</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>In this view, you can see all of the files that have problems merging with each other. The lines with all the angle brackets denote which branch code is coming from. The lines of equals signs separate the code from each branch. In large files, it can become very cumbersome to fix merge conflicts, which is why communication is key.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><cite>both</cite>: work through the file together to decide what changes to keep and then click the “Mark as resolved” (upper right) and then “Commit merge” buttons</p></li>
+<li><p><cite>both</cite>: in your terminal (correct folder, <code class="docutils literal notranslate"><span class="pre">main</span></code> branch) run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> to get the most recent remote version locally</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Continuing Work on Resolved Files</p>
+<div class="admonition-body docutils container">
+<p>New branches should be made from the most current version of <code class="docutils literal notranslate"><span class="pre">main</span></code>. You can also merge in branches locally if you need changes from <code class="docutils literal notranslate"><span class="pre">main</span></code> in your local branch.</p>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>You’ve resolved the issue!</p>
+<p>When you have gone through the steps once, switch roles and go through them again!</p>
+</section>
+</section>
+</section>
+
+        </main>
+
+        <footer id="page-footer">
+            <p>&copy; 2022 Devmountain</p>
+        </footer>
+      </div>
+
+      <script src="_static/main.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+  </body>
+</html>
